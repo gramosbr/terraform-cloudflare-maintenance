@@ -17,6 +17,15 @@ here.](https://hodovi.cc/blog/quick-pretty-and-easy-maintenance-page-using-cloud
 Simple maintenance page with your logo, fav icon, company name, font and
 email:
 
+Export cloudflare auth
+```bash
+TF_VAR_cloudflare_api_key=xxx
+TF_VAR_cloudflare_email=xxx
+# or
+TF_VAR_cloudflare_token=xxx
+```
+If using token, make sure it has all the necessary permissions
+
 ```terraform
 module "hodovi_cc_maintenance" {
   source          = "git::git@github.com:adinhodovic/terraform-cloudflare-maintenance.git?ref=v0.3.0"
@@ -53,7 +62,7 @@ module "hodovi_cc_maintenance" {
 |-----------------|:-----------------------------------------------------------------:|:--------:|:----------------------------------------------:|:--------------------------------:|
 | enabled         | Flag to create/delete the worker route.                           | False    | Bool                                           | true                             |
 | cloudflare_zone | The Cloudflare Zone.                                              | True     | String                                         | -                                |
-| pattern         | The DNS pattern to deploy the maintenance page to.                | True     | String                                         | -                                |
+| patterns        | The DNS patterns to deploy the maintenance page to.               | True     | list(String)                                   | -                                |
 | email           | The email address for used for support inquiries.                 | True     | String                                         | -                                |
 | company_name    | Your company name.                                                | True     | String                                         | -                                |
 | font            | [**Google** font](https://fonts.google.com/) that should be used. | False    | String                                         | "Poppins"                        |
